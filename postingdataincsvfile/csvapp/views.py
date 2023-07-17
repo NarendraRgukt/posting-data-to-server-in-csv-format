@@ -3,9 +3,11 @@ from rest_framework.views import APIView
 from csvapp.serializers import ItemSerializer
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.parsers import FormParser,MultiPartParser
 import csv
 
 class CsvExportView(APIView):
+    parser_classes=[FormParser,MultiPartParser]
     def post(self,request):
         try:
             csv_file=request.FILES.get('file')
